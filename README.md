@@ -1,4 +1,4 @@
-# K8s Dataflows: Cloud-native data processing workflows with Argo Workflows and Events
+# Cloud-native data processing workflows with Argo Workflows and Events
 
 Demo repository for data2day 2022 talk on cloud-native data processing workflows with Argo workflows and events.
 
@@ -12,6 +12,17 @@ kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/dow
 # install Argo Events
 kubectl create namespace argo-events
 kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/v1.7.2/manifests/namespace-install.yaml
+```
+
+## Events Demo
+
+```bash
+cd events
+kubectl apply -f eventbus-native.yaml
+kubectl apply -f eventsource-webhook.yaml
+kubectl apply -f workflow-rbac.yaml
+kubectl apply -f sensor-rbac.yaml
+kubectl apply -f sensor-webhook.yaml
 ```
 
 ## Maintainer
