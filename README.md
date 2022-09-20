@@ -33,17 +33,16 @@ argo logs -n argo @latest
 ```bash
 cd events
 
-kubectl apply -f eventbus-native.yaml
-kubectl apply -f eventsource-webhook.yaml
-kubectl apply -f workflow-rbac.yaml
-kubectl apply -f sensor-rbac.yaml
-kubectl apply -f sensor-webhook.yaml
+kubectl apply -n argo-events -f eventbus-native.yaml
+kubectl apply -n argo-events -f eventsource-webhook.yaml
+kubectl apply -n argo-events -f workflow-rbac.yaml
+kubectl apply -n argo-events -f sensor-rbac.yaml
+kubectl apply -n argo-events -f sensor-webhook.yaml
 
 kubectl -n argo-events port-forward $(kubectl -n argo-events get pod -l eventsource-name=webhook -o name) 12000:12000
 curl -d '{"message":"data2day demo webhook"}' -H "Content-Type: application/json" -X POST http://localhost:12000/example
 
 kubectl -n argo-events get workflows
-
 ```
 
 ## Maintainer
