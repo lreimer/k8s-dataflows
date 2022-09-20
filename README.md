@@ -14,15 +14,36 @@ kubectl create namespace argo-events
 kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/v1.7.2/manifests/namespace-install.yaml
 ```
 
+## Workflow Demo
+
+```bash
+# connect to server locally and open UI
+kubectl -n argo port-forward deployment/argo-server 2746:2746
+open http://localhost:2746
+
+# submit simple hello world workflow
+argo submit -n argo --watch workflows/hello-world.yaml
+argo list -n argo
+argo get -n argo @latest
+argo logs -n argo @latest
+```
+
 ## Events Demo
 
 ```bash
 cd events
+
 kubectl apply -f eventbus-native.yaml
 kubectl apply -f eventsource-webhook.yaml
 kubectl apply -f workflow-rbac.yaml
 kubectl apply -f sensor-rbac.yaml
 kubectl apply -f sensor-webhook.yaml
+
+kubectl -n argo-events port-forward $(kubectl -n argo-events get pod -l eventsource-name=webhook -o name) 12000:12000
+curl -d '{"message":"data2day demo webhook"}' -H "Content-Type: application/json" -X POST http://localhost:12000/example
+
+kubectl -n argo-events get workflows
+
 ```
 
 ## Maintainer
