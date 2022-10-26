@@ -19,13 +19,16 @@ kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-
 ```bash
 # connect to server locally and open UI
 kubectl -n argo port-forward deployment/argo-server 2746:2746
-open http://localhost:2746
+open https://localhost:2746
 
 # submit simple hello world workflow
 argo submit -n argo --watch workflows/hello-world.yaml
 argo list -n argo
-argo get -n argo @latest
+argo get -n argo @latest    
 argo logs -n argo @latest
+
+argo submit -n argo --watch https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/dag-diamond-steps.yaml
+argo submit -n argo --watch https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/dag-diamond.yaml
 ```
 
 ## Events Demo
