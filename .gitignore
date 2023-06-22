@@ -1,5 +1,6 @@
 .dccache
 .gradle
+.DS_Store
 /build/
 
 # Ignore Gradle GUI config
