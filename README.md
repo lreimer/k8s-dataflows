@@ -7,7 +7,7 @@ Demo repository for data2day 2022 talk on cloud-native data processing workflows
 ```bash
 # install Argo Workflows
 kubectl create namespace argo
-kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.3.9/install.yaml
+kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.4.8/install.yaml
 
 # install Argo Events
 kubectl create namespace argo-events
@@ -43,7 +43,7 @@ kubectl apply -n argo-events -f sensor-rbac.yaml
 kubectl apply -n argo-events -f sensor-webhook.yaml
 
 kubectl -n argo-events port-forward $(kubectl -n argo-events get pod -l eventsource-name=webhook -o name) 12000:12000
-curl -d '{"message":"data2day demo webhook"}' -H "Content-Type: application/json" -X POST http://localhost:12000/example
+curl -d '{"message":"CloudLand demo webhook"}' -H "Content-Type: application/json" -X POST http://localhost:12000/example
 
 kubectl -n argo-events get workflows
 ```

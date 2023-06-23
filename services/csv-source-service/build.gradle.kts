@@ -16,8 +16,13 @@ dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:quarkus-camel-bom:${quarkusPlatformVersion}"))
     implementation("org.apache.camel.quarkus:camel-quarkus-bindy")
+    
+    implementation("io.quarkus:quarkus-kubernetes")
+    implementation("io.quarkus:quarkus-minikube")
+    
     implementation("io.quarkus:quarkus-picocli")
     implementation("io.quarkus:quarkus-arc")
+
     testImplementation("io.quarkus:quarkus-junit5")
 }
 
